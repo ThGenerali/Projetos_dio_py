@@ -1,21 +1,15 @@
-from setuptools import setup, find_packages
+from package_name.modulo_acesso.login import cteste
+escolha = int(input('''
+                Olá! Bem-vindo ao banco GENERALI
+                ________________________________
+                1 - Login
+                2 - Cadastrar
+                3 - Encerrar
+                ________________________________
+                O que você deseja?
+                '''))
 
-with open("README.md", "r") as f:
-    page_description = f.read()
-
-with open("requirements.txt") as f:
-    requirements = f.read().splitlines()
-
-setup(
-    name="package_name",
-    version="0.0.1",
-    author="my_name",
-    author_email="my_email",
-    description="My short description",
-    long_description=page_description,
-    long_description_content_type="text/markdown",
-    url="my_github_repository_project_link"
-    packages=find_packages(),
-    install_requires=requirements,
-    python_requires='>=3.8',
-)
+if escolha == 1:
+    login = input('digite seu usário: ')
+    senha = input('digite sua senha: ')
+    cteste.teste(login, senha)
