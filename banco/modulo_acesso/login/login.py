@@ -1,7 +1,20 @@
-from banco.banco_dados import banco as bd
-def login_conta(login, senha):
-    global bd
-    if login in bd and senha == bd[login]['senha']:
-       conta = tuple(bd[login]['dado_conta'].items()) 
-       print(f'Seja Bem vindo {login}')
-       print(conta)
+from ...banco_dados.UsuariosRepository import busca_cliente
+def login_conta():
+    
+    logado = False
+    while logado == False:
+        login = input('digite seu usário: ')
+        senha = input('digite sua senha: ')
+        
+        usuario = busca_cliente(login, senha)
+
+        if usuario is None:
+            print("Login ou senha incorretos, tente novamente.")
+            logado = False
+        else:
+            logado = True
+    
+   
+    
+    
+

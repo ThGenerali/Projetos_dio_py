@@ -1,15 +1,15 @@
-
-bd = {}
+from ...banco_dados.UsuariosRepository import AddUser
 def cadastro_conta():
-    global bd
-    print('''
+    print('''0
         Para te cadastrarmos
         solicitaremos as seguintes informações 
         ''')
-    usuario = input('Informe nome: ')
+    nome = input('Informe nome: ')
     senha = input('Informe uma senha de login: ')
     numero_conta = int(input('Informe um número para sua conta de 8 digitos: '))
     senha_conta = int(input('Informe uma senha para sua conta de 4 digitos: '))
+   
+    
 
     while len(str(numero_conta)) != 8:
         if len(str(numero_conta)) != 8:
@@ -24,10 +24,8 @@ def cadastro_conta():
                 break
             
     
-    bd.update({usuario:{'senha':senha, 'dado_cliente':{'numero_conta':numero_conta, 'senha_conta':senha_conta}, 'dado_conta':{'saldo':0, 'extrato':0}}})      
+    AddUser(nome, senha, numero_conta, senha_conta)
+    
+          
     print('Conta cadastrada com sucesso!')
 
-cadastro_conta()
-print(bd)
-cadastro_conta()
-print(bd)
