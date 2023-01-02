@@ -1,6 +1,6 @@
-from ...banco_dados.UsuariosRepository import AddUser
+from ...banco_dados import UsuariosRepository 
 def cadastro_conta():
-    print('''0
+    print('''
         Para te cadastrarmos
         solicitaremos as seguintes informações 
         ''')
@@ -24,7 +24,7 @@ def cadastro_conta():
                 break
             
     
-    AddUser(nome, senha, numero_conta, senha_conta)
+    UsuariosRepository.AddUser(nome, senha, numero_conta, senha_conta)
     
           
     print('Conta cadastrada com sucesso!')

@@ -13,11 +13,21 @@ while escolha != 3:
                     O que você deseja?
                     '''))
 
-    if escolha == 1:
-        login.login_conta()
+    match escolha:
         
-    if escolha == 2:
-        cadastro.cadastro_conta()
+        case 1:
+            login.login_conta()
         
+        case 2:
+            cadastro.cadastro_conta()
         
-print(bd)
+        case 3:
+            print('Encerrando')
+            break
+        
+        case _:
+            print('Opcao inválida')
+            
+    
+print('Banco encerrado. Até mais!')
+
