@@ -17,3 +17,5 @@ def localizar_cliente():
     pass
 def atualizar():
     pass
+def excluir():
+    pass

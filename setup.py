@@ -26,7 +26,7 @@ while escolha != 3:
             break
         
         case _:
-            print('Opcao inválida')
+            print('Opção inválida')
             
     
 print('Banco encerrado. Até mais!')

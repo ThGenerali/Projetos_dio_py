@@ -7,12 +7,14 @@ class conta:
         self.saldo = saldo 
         self.extrato = extrato 
     
-    def transferir():
-        print('transferir')
     def depositar():
         print('depositar')
+    
     def sacar():
         print('sacando')
+    
+    def transferir():
+        print('transferir')
     
     def acoes(self):
         opcao = 1
@@ -29,11 +31,16 @@ class conta:
                             
                         O que deseja fazer?\n
                         '''))
-        match opcao:
-            case 1:    
-                conta.transferir()
-            case 2:
-                conta.depositar()
-            case 3:
-                conta.sacar()
+            match opcao:
+                case 1:    
+                    conta.depositar()
+                case 2:
+                    conta.sacar()
+                case 3:
+                    conta.transferir()
+                case 0:
+                    print('Saindo...')
+                    break
+                case _:
+                    print('opção inválida')
      
