@@ -5,7 +5,7 @@ bd = {}
 def adicionar_cliente(nome, senha, numero_conta, senha_conta):
     global bd
     bd.update({nome:{'senha':senha, 'dado_cliente':{'numero_conta':numero_conta, 'senha_conta':senha_conta}, 'dado_conta':{'saldo':0, 'extrato':0}}})
-    print(bd)
+    
     
 def busca_cliente(login, senha):
     if login in bd and senha == bd[login]['senha']: 
@@ -13,13 +13,26 @@ def busca_cliente(login, senha):
     else:
         return 'incorreto'
 
-def localizar_usuario():
-    pass
+def localizar_usuario(nome, numero_conta):
+    global bd
+    if nome in bd and numero_conta == bd[nome]['dado_cliente']['numero_conta']:
+        return f'{nome}\n {numero_conta}'
+    else:
+        return 'Conta não encontrada'
 
+def atualizar_transferencia(nome, numero_conta, valor):
+    global bd
+    if nome in bd and numero_conta == bd[nome]['dado_cliente']['numero_conta']:
+        bd[nome]['dado_conta']['saldo'] += valor
+        print(bd[nome])
+        return True
+    else:
+        return False
+    
 def atualizar(usuario, saldo):
     global bd
     bd[usuario]['dado_conta']['saldo'] = saldo
-    print(bd[usuario])
+    
     
 def excluir(usuario):
     global bd

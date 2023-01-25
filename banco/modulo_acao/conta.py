@@ -10,17 +10,17 @@ class conta:
     def depositar(self):
         valor = int(input('Qual valor do depósito?\n'))
         senha_incorreta = True
+        chances = 3
         while senha_incorreta == True:
             senha = int(input('Confirme a senha da sua conta: '))
             verificacao = UsuariosRepository.verificacao(self.nome, senha)
             if verificacao == 'senha incorreta':
-                chances = 3
                 chances -= 1
                 print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                 if chances == 0:
                     print('Conta excluida')
+                    del conta.acoes
                     UsuariosRepository.excluir(self.nome)
-                    conta.acoes(conta).opcao = 0
                     break 
             else:
                 print(verificacao)
@@ -34,17 +34,17 @@ class conta:
         valor = int(input('Qual valor do saque?\n'))
         if valor <= self.saldo:
             senha_incorreta = True
+            chances = 3
             while senha_incorreta == True:
                 senha = int(input('Confirme a senha da sua conta: '))
                 verificacao = UsuariosRepository.verificacao(self.nome, senha)
                 if verificacao == 'senha incorreta':
-                    chances = 3
                     chances -= 1
                     print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                     if chances == 0:
                         print('Conta excluida')
-                        UsuariosRepository.excluir(self.nome)
                         conta.acoes(conta).opcao = 0
+                        UsuariosRepository.excluir(self.nome)
                         break 
                 else:
                     print(verificacao)
@@ -55,9 +55,50 @@ class conta:
         else:
             print('Saldo insuficiente para saque')
     
-    def transferir():
-        print('transferir')
-    
+    def transferir(self):
+        procura = False
+        while procura == False:
+            nome_usuario =  input('Informe o nome de quem você irá transferir: ')
+            conta_usuario = int(input('Informe o número da conta: '))
+            localizar = UsuariosRepository.localizar_usuario(nome_usuario, conta_usuario)
+            if localizar == 'Conta não encontrada':
+                print(localizar)
+            else:
+                confirmacao = input(f'Você deseja transferir para {localizar}?\n (Digite "sim" para confirmar ou "não" para negar)\n')
+                if confirmacao == 'sim':
+                    procura = True
+        
+        operacao = False
+        while operacao == False:
+            valor = int(input('Qual valor de transferênica?\n'))
+            if valor > self.saldo:
+                print('Valor de transferência negado.')
+            else:
+                senha_incorreta = True
+                chances = 3
+                while senha_incorreta == True:
+                    senha = int(input('Confirme a senha da sua conta: '))
+                    verificacao = UsuariosRepository.verificacao(self.nome, senha)
+                    if verificacao == 'senha incorreta':
+                        chances -= 1
+                        print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
+                        if chances == 0:
+                            print('Conta excluida')
+                            conta.acoes(conta).opcao = 0
+                            UsuariosRepository.excluir(self.nome)
+                            break 
+                    
+                    else:
+                        transferencia = UsuariosRepository.atualizar_transferencia(nome_usuario, conta_usuario, valor)
+                        if transferencia == True:
+                            print(verificacao)
+                            self.saldo -= valor 
+                            UsuariosRepository.atualizar(self.nome, self.saldo)
+                            print('Operação efetuada!')
+                            senha_incorreta = False
+                        else:
+                            print('Ocorreu um erro. por favor realize novamente a transferência.')
+        
     def acoes(self):
         opcao = 1
         while opcao != 0:
