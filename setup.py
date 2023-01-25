@@ -22,7 +22,7 @@ while escolha != 3:
             cadastro.cadastro_conta()
         
         case 3:
-            print('Encerrando')
+            print('Encerrando...')
             break
         
         case _:

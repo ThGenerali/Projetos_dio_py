@@ -24,7 +24,7 @@ def cadastro_conta():
                 break
             
     
-    UsuariosRepository.AddUser(nome, senha, numero_conta, senha_conta)
+    UsuariosRepository.adicionar_cliente(nome, senha, numero_conta, senha_conta)
     
           
     print('Conta cadastrada com sucesso!')

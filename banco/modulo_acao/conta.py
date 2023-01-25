@@ -7,11 +7,53 @@ class conta:
         self.saldo = saldo 
         self.extrato = extrato 
     
-    def depositar():
-        print('depositar')
-    
-    def sacar():
-        print('sacando')
+    def depositar(self):
+        valor = int(input('Qual valor do depósito?\n'))
+        senha_incorreta = True
+        while senha_incorreta == True:
+            senha = int(input('Confirme a senha da sua conta: '))
+            verificacao = UsuariosRepository.verificacao(self.nome, senha)
+            if verificacao == 'senha incorreta':
+                chances = 3
+                chances -= 1
+                print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
+                if chances == 0:
+                    print('Conta excluida')
+                    UsuariosRepository.excluir(self.nome)
+                    conta.acoes(conta).opcao = 0
+                    break 
+            else:
+                print(verificacao)
+                self.saldo += valor 
+                UsuariosRepository.atualizar(self.nome, self.saldo)
+                print('Operação efetuada!')
+                senha_incorreta = False
+        
+        
+    def sacar(self):
+        valor = int(input('Qual valor do saque?\n'))
+        if valor <= self.saldo:
+            senha_incorreta = True
+            while senha_incorreta == True:
+                senha = int(input('Confirme a senha da sua conta: '))
+                verificacao = UsuariosRepository.verificacao(self.nome, senha)
+                if verificacao == 'senha incorreta':
+                    chances = 3
+                    chances -= 1
+                    print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
+                    if chances == 0:
+                        print('Conta excluida')
+                        UsuariosRepository.excluir(self.nome)
+                        conta.acoes(conta).opcao = 0
+                        break 
+                else:
+                    print(verificacao)
+                    self.saldo -= valor 
+                    UsuariosRepository.atualizar(self.nome, self.saldo)
+                    print('Operação efetuada!')
+                    senha_incorreta = False
+        else:
+            print('Saldo insuficiente para saque')
     
     def transferir():
         print('transferir')
@@ -33,11 +75,11 @@ class conta:
                         '''))
             match opcao:
                 case 1:    
-                    conta.depositar()
-                case 2:
-                    conta.sacar()
+                    conta.depositar(self)
+                case 2:       
+                    conta.sacar(self)
                 case 3:
-                    conta.transferir()
+                    conta.transferir(self)
                 case 0:
                     print('Saindo...')
                     break

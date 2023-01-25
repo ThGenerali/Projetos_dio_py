@@ -13,22 +13,7 @@ def login_conta():
             print("Login ou senha incorretos, tente novamente.")
             logado = False
         else:
-            logado = True
-    # opcao = 1 
-    # while opcao != 0:
-    #     opcao = int(input(f'''
-    #                     Bem-vindo {login}!
-    #                     _____________________________
-                            
-    #                         1 - Depositar
-    #                         2 - Sacar 
-    #                         3 - Transferir
-    #                         0 - Sair
-    #                     _____________________________
-                            
-    #                     O que deseja fazer?\n
-    #                     '''))
-        
+            logado = True 
     usuario.acoes()
         
    
