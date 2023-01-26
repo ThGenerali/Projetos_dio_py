@@ -19,7 +19,6 @@ class conta:
                 print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                 if chances == 0:
                     print('Conta excluida')
-                    del conta.acoes
                     UsuariosRepository.excluir(self.nome)
                     break 
             else:
@@ -43,7 +42,6 @@ class conta:
                     print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                     if chances == 0:
                         print('Conta excluida')
-                        conta.acoes(conta).opcao = 0
                         UsuariosRepository.excluir(self.nome)
                         break 
                 else:
@@ -84,9 +82,9 @@ class conta:
                         print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                         if chances == 0:
                             print('Conta excluida')
-                            conta.acoes(conta).opcao = 0
                             UsuariosRepository.excluir(self.nome)
-                            break 
+                            break
+                            
                     
                     else:
                         transferencia = UsuariosRepository.atualizar_transferencia(nome_usuario, conta_usuario, valor)
@@ -96,34 +94,40 @@ class conta:
                             UsuariosRepository.atualizar(self.nome, self.saldo)
                             print('Operação efetuada!')
                             senha_incorreta = False
+                            operacao = True
                         else:
                             print('Ocorreu um erro. por favor realize novamente a transferência.')
         
     def acoes(self):
         opcao = 1
         while opcao != 0:
-            opcao = int(input(f'''
-                        Bem-vindo {self.nome}!
-                        _____________________________
-                            
-                            1 - Depositar
-                            2 - Sacar 
-                            3 - Transferir
-                            0 - Sair
-                        _____________________________
-                            
-                        O que deseja fazer?\n
-                        '''))
-            match opcao:
-                case 1:    
-                    conta.depositar(self)
-                case 2:       
-                    conta.sacar(self)
-                case 3:
-                    conta.transferir(self)
-                case 0:
-                    print('Saindo...')
-                    break
-                case _:
-                    print('opção inválida')
+            verificacao = UsuariosRepository.verificacao_conta(self.nome)
+            if verificacao == True:
+                opcao = int(input(f'''
+                            Bem-vindo {self.nome}!
+                            _____________________________
+                                
+                                1 - Depositar
+                                2 - Sacar 
+                                3 - Transferir
+                                0 - Sair
+                            _____________________________
+                                
+                            O que deseja fazer?\n
+                            '''))
+            
+                match opcao:
+                    case 1:    
+                        conta.depositar(self)
+                    case 2:       
+                        conta.sacar(self)
+                    case 3:
+                        conta.transferir(self)
+                    case 0:
+                        print('Saindo...')
+                        break
+                    case _:
+                        print('opção inválida')
+            else:
+                break
      

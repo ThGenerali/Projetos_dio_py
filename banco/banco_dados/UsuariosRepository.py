@@ -8,10 +8,13 @@ def adicionar_cliente(nome, senha, numero_conta, senha_conta):
     
     
 def busca_cliente(login, senha):
-    if login in bd and senha == bd[login]['senha']: 
-        return conta(login, bd[login]['dado_cliente']['numero_conta'], bd[login]['dado_cliente']['senha_conta'], bd[login]['dado_conta']['saldo'], bd[login]['dado_conta']['extrato'])
+    if login in bd:
+        if senha == bd[login]['senha']: 
+            return conta(login, bd[login]['dado_cliente']['numero_conta'], bd[login]['dado_cliente']['senha_conta'], bd[login]['dado_conta']['saldo'], bd[login]['dado_conta']['extrato'])
+        else:
+            return 'incorreto'
     else:
-        return 'incorreto'
+        return False
 
 def localizar_usuario(nome, numero_conta):
     global bd
@@ -24,7 +27,6 @@ def atualizar_transferencia(nome, numero_conta, valor):
     global bd
     if nome in bd and numero_conta == bd[nome]['dado_cliente']['numero_conta']:
         bd[nome]['dado_conta']['saldo'] += valor
-        print(bd[nome])
         return True
     else:
         return False
@@ -44,3 +46,9 @@ def verificacao(usuario, senha):
         return 'Senha correta! Efetuando Operação...'
     else: 
         return 'senha incorreta'
+    
+def verificacao_conta(nome):
+    if nome in bd:
+        return True
+    else:
+        return False

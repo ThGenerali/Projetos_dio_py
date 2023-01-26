@@ -11,10 +11,12 @@ def login_conta():
 
         if usuario is 'incorreto':
             print("Login ou senha incorretos, tente novamente.")
-            logado = False
+        elif usuario is False:
+            print('Conta não existente')
+            break
         else:
-            logado = True 
-    usuario.acoes()
+            usuario.acoes()
+            logado = True  
         
    
     
