@@ -1,5 +1,5 @@
 from ..modulo_acao.conta import conta
-
+#Verifcation data clients in database
 
 bd = {}
 def adicionar_cliente(nome, senha, numero_conta, senha_conta):

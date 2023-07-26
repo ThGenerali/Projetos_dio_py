@@ -1,9 +1,9 @@
 from ..banco_dados import UsuariosRepository
-class conta:
-    def __init__ (self, nome, numero_conta, senha_conta, saldo, extrato):
-        self.nome = nome 
-        self.numero_conta = numero_conta 
-        self.senha_conta = senha_conta 
+class account:
+    def __init__ (self, name, account_number, account_password, saldo, extrato):
+        self.name = name 
+        self.account_number = account_number 
+        self.account_password = account_password 
         self.saldo = saldo 
         self.extrato = extrato 
     
@@ -13,18 +13,18 @@ class conta:
         chances = 3
         while senha_incorreta == True:
             senha = int(input('Confirme a senha da sua conta: '))
-            verificacao = UsuariosRepository.verificacao(self.nome, senha)
+            verificacao = UsuariosRepository.verificacao(self.name, senha)
             if verificacao == 'senha incorreta':
                 chances -= 1
                 print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                 if chances == 0:
                     print('Conta excluida')
-                    UsuariosRepository.excluir(self.nome)
+                    UsuariosRepository.excluir(self.name)
                     break 
             else:
                 print(verificacao)
                 self.saldo += valor 
-                UsuariosRepository.atualizar(self.nome, self.saldo)
+                UsuariosRepository.atualizar(self.name, self.saldo)
                 print('Operação efetuada!')
                 senha_incorreta = False
         
@@ -36,18 +36,18 @@ class conta:
             chances = 3
             while senha_incorreta == True:
                 senha = int(input('Confirme a senha da sua conta: '))
-                verificacao = UsuariosRepository.verificacao(self.nome, senha)
+                verificacao = UsuariosRepository.verificacao(self.name, senha)
                 if verificacao == 'senha incorreta':
                     chances -= 1
                     print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                     if chances == 0:
                         print('Conta excluida')
-                        UsuariosRepository.excluir(self.nome)
+                        UsuariosRepository.excluir(self.name)
                         break 
                 else:
                     print(verificacao)
                     self.saldo -= valor 
-                    UsuariosRepository.atualizar(self.nome, self.saldo)
+                    UsuariosRepository.atualizar(self.name, self.saldo)
                     print('Operação efetuada!')
                     senha_incorreta = False
         else:
@@ -56,7 +56,7 @@ class conta:
     def transferir(self):
         procura = False
         while procura == False:
-            nome_usuario =  input('Informe o nome de quem você irá transferir: ')
+            nome_usuario =  input('Informe o name de quem você irá transferir: ')
             conta_usuario = int(input('Informe o número da conta: '))
             localizar = UsuariosRepository.localizar_usuario(nome_usuario, conta_usuario)
             if localizar == 'Conta não encontrada':
@@ -76,13 +76,13 @@ class conta:
                 chances = 3
                 while senha_incorreta == True:
                     senha = int(input('Confirme a senha da sua conta: '))
-                    verificacao = UsuariosRepository.verificacao(self.nome, senha)
+                    verificacao = UsuariosRepository.verificacao(self.name, senha)
                     if verificacao == 'senha incorreta':
                         chances -= 1
                         print(f'você tem mais {chances} chances.\n (Caso erre todas as chances sua conta será excluida.)')
                         if chances == 0:
                             print('Conta excluida')
-                            UsuariosRepository.excluir(self.nome)
+                            UsuariosRepository.excluir(self.name)
                             break
                             
                     
@@ -91,7 +91,7 @@ class conta:
                         if transferencia == True:
                             print(verificacao)
                             self.saldo -= valor 
-                            UsuariosRepository.atualizar(self.nome, self.saldo)
+                            UsuariosRepository.atualizar(self.name, self.saldo)
                             print('Operação efetuada!')
                             senha_incorreta = False
                             operacao = True
@@ -101,10 +101,10 @@ class conta:
     def acoes(self):
         opcao = 1
         while opcao != 0:
-            verificacao = UsuariosRepository.verificacao_conta(self.nome)
+            verificacao = UsuariosRepository.verificacao_conta(self.name)
             if verificacao == True:
                 opcao = int(input(f'''
-                            Bem-vindo {self.nome}!
+                            Bem-vindo {self.name}!
                             _____________________________
                                 
                                 1 - Depositar

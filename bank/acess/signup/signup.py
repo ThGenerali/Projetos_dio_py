@@ -4,16 +4,16 @@ def cadastro_conta():
         Para te cadastrarmos
         solicitaremos as seguintes informações 
         ''')
-    nome = input('Informe nome: ')
-    senha = input('Informe uma senha de login: ')
-    numero_conta = int(input('Informe um número para sua conta de 8 digitos: '))
+    name = input('Informe nome: ')
+    password = input('Informe uma senha de login: ')
+    account_name = int(input('Informe um número para sua conta de 8 digitos: '))
     senha_conta = int(input('Informe uma senha para sua conta de 4 digitos: '))
    
     
 
-    while len(str(numero_conta)) != 8:
-        if len(str(numero_conta)) != 8:
-            numero_conta = int(input('Número da conta não está dentro dos requisitos.\nPor favor digite um número de 8 digitos para sua conta: '))
+    while len(str(account_name)) != 8:
+        if len(str(account_name)) != 8:
+            account_name = int(input('Número da conta não está dentro dos requisitos.\nPor favor digite um número de 8 digitos para sua conta: '))
         else:
             break
         
@@ -24,7 +24,7 @@ def cadastro_conta():
                 break
             
     
-    UsuariosRepository.adicionar_cliente(nome, senha, numero_conta, senha_conta)
+    UsuariosRepository.adicionar_cliente(name, password, account_name, senha_conta)
     
           
     print('Conta cadastrada com sucesso!')

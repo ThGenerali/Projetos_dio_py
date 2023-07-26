@@ -1,9 +1,9 @@
 from banco.modulo_acesso.cadastro import cadastro
 from banco.modulo_acesso.login import login
 from banco.banco_dados.UsuariosRepository import bd
-escolha = 0
-while escolha != 3:
-    escolha = int(input('''
+options = 0
+while options != 3:
+    options = int(input('''
                     Olá! Bem-vindo ao banco GENERALI
                     ________________________________
                     1 - Entrar
@@ -13,7 +13,7 @@ while escolha != 3:
                     O que você deseja?
                     '''))
 
-    match escolha:
+    match options:
         
         case 1:
             login.login_conta()
