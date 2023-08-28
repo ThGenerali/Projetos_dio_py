@@ -1,4 +1,4 @@
-from ...banco_dados import UsuariosRepository 
+from ...data_bank import UsuariosRepository
 def cadastro_conta():
     print('''
         Para te cadastrarmos
@@ -6,25 +6,25 @@ def cadastro_conta():
         ''')
     name = input('Informe nome: ')
     password = input('Informe uma senha de login: ')
-    account_name = int(input('Informe um número para sua conta de 8 digitos: '))
-    senha_conta = int(input('Informe uma senha para sua conta de 4 digitos: '))
+    number_account = int(input('Informe um número para sua conta de 8 digitos: '))
+    password_account = int(input('Informe uma senha para sua conta de 4 digitos: '))
    
     
 
-    while len(str(account_name)) != 8:
-        if len(str(account_name)) != 8:
-            account_name = int(input('Número da conta não está dentro dos requisitos.\nPor favor digite um número de 8 digitos para sua conta: '))
+    while len(str(number_account)) != 8:
+        if len(str(number_account)) != 8:
+            number_account = int(input('Número da conta não está dentro dos requisitos.\nPor favor digite um número de 8 digitos para sua conta: '))
         else:
             break
         
-        while len(str(senha_conta)) != 4:
-            if len(str(senha_conta)) != 4:
-                senha_conta = int(input('Senha da conta não está dentro dos requisitos.\nPor favor digite uma senha de 4 digitos para sua conta: '))
+        while len(str(password_account)) != 4:
+            if len(str(password_account)) != 4:
+                password_account = int(input('Senha da conta não está dentro dos requisitos.\nPor favor digite uma senha de 4 digitos para sua conta: '))
             else:
                 break
             
     
-    UsuariosRepository.adicionar_cliente(name, password, account_name, senha_conta)
+    UsuariosRepository.adicionar_cliente(name, password, number_account, password_account)
     
           
     print('Conta cadastrada com sucesso!')

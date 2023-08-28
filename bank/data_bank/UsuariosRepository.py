@@ -2,53 +2,53 @@ from ..modulo_acao.conta import conta
 #Verifcation data clients in database
 
 bd = {}
-def adicionar_cliente(nome, senha, numero_conta, senha_conta):
+def create_client(name, password, account_number, account_password):
     global bd
-    bd.update({nome:{'senha':senha, 'dado_cliente':{'numero_conta':numero_conta, 'senha_conta':senha_conta}, 'dado_conta':{'saldo':0, 'extrato':0}}})
+    bd.update({name:{'password':password, 'dado_cliente':{'account_number':account_number, 'account_password':account_password}, 'dado_conta':{'balance':0, 'extrato':0}}})
     
     
-def busca_cliente(login, senha):
+def search_client(login, password):
     if login in bd:
-        if senha == bd[login]['senha']: 
-            return conta(login, bd[login]['dado_cliente']['numero_conta'], bd[login]['dado_cliente']['senha_conta'], bd[login]['dado_conta']['saldo'], bd[login]['dado_conta']['extrato'])
+        if password == bd[login]['password']: 
+            return conta(login, bd[login]['dado_cliente']['account_number'], bd[login]['dado_cliente']['account_password'], bd[login]['dado_conta']['saldo'], bd[login]['dado_conta']['extrato'])
         else:
             return 'incorreto'
     else:
         return False
 
-def localizar_usuario(nome, numero_conta):
+def find_client(name, account_number):
     global bd
-    if nome in bd and numero_conta == bd[nome]['dado_cliente']['numero_conta']:
-        return f'{nome}\n {numero_conta}'
+    if name in bd and account_number == bd[name]['dado_cliente']['account_number']:
+        return f'{name}\n {account_number}'
     else:
         return 'Conta não encontrada'
 
-def atualizar_transferencia(nome, numero_conta, valor):
+def update_transfer(name, account_number, value):
     global bd
-    if nome in bd and numero_conta == bd[nome]['dado_cliente']['numero_conta']:
-        bd[nome]['dado_conta']['saldo'] += valor
+    if name in bd and account_number == bd[name]['dado_cliente']['account_number']:
+        bd[name]['dado_conta']['saldo'] += value
         return True
     else:
         return False
     
-def atualizar(usuario, saldo):
+def update_balance(usuary, balance):
     global bd
-    bd[usuario]['dado_conta']['saldo'] = saldo
+    bd[usuary]['dado_conta']['balance'] = balance
     
     
-def excluir(usuario):
+def delete(usuary):
     global bd
-    del bd[usuario]
+    del bd[usuary]
     
-def verificacao(usuario, senha):
+def verification_operation(usuary, password):
     global bd
-    if senha == bd[usuario]['dado_cliente']['senha_conta']:
+    if password == bd[usuary]['dado_cliente']['account_password']:
         return 'Senha correta! Efetuando Operação...'
     else: 
-        return 'senha incorreta'
+        return 'password incorreta'
     
-def verificacao_conta(nome):
-    if nome in bd:
+def verification_account(name):
+    if name in bd:
         return True
     else:
         return False
