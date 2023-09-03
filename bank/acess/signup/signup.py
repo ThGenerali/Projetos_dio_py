@@ -1,4 +1,4 @@
-from ...data_bank import UsuariosRepository
+from ...data_bank import user_repository
 def cadastro_conta():
     print('''
         Para te cadastrarmos
@@ -24,7 +24,7 @@ def cadastro_conta():
                 break
             
     
-    UsuariosRepository.adicionar_cliente(name, password, number_account, password_account)
+    user_repository.adicionar_cliente(name, password, number_account, password_account)
     
           
     print('Conta cadastrada com sucesso!')
